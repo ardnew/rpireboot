@@ -1,0 +1,16 @@
+[Unit]
+Description=Restart system on GPIO interrupt
+Requires=network.target
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+RemainAfterExit=yes
+Restart=always
+RestartSec=1
+User=root
+ExecStart=/sbin/rpireboot -p 18 -l up -e fall
+
+[Install]
+WantedBy=multi-user.target
